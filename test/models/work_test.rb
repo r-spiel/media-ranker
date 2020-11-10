@@ -1,7 +1,9 @@
 require "test_helper"
 
 describe Work do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  let(:work) { Work.new }
+
+  it "must be valid" do
+    value(work).must_be :valid?
+  end
 end

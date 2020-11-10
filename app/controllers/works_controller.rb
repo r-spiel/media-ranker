@@ -52,8 +52,8 @@ class WorksController < ApplicationController
 
     if @work
       @work.destory
-      redirect_to works_path and return
-    else
+      redirect_to root_path and return
+    else #if destory fails
       redirect_to works_path and return
     end
 
