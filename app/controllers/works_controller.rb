@@ -1,7 +1,19 @@
 class WorksController < ApplicationController
+  def homepage
+    @works = Work.all
+
+    @albums = @works.where(category: 'album')
+    @books = @works.where(category: 'book')
+    @movies = @works.where(category: 'movie')
+  end
 
   def index
     @works = Work.all
+
+    @albums = @works.where(category: 'album')
+    @books = @works.where(category: 'book')
+    @movies = @works.where(category: 'movie')
+
   end
 
   def new
@@ -38,7 +50,7 @@ class WorksController < ApplicationController
   def update
     @work = Work.find_by(id: params[:id])
 
-    if @driver.nil?
+    if @work.nil?
       redirect_to works_path and return
     elsif @work.update(work_params)
       redirect_to work_path(@work) and return
@@ -51,9 +63,9 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: params[:id])
 
     if @work
-      @work.destory
+      @work.destroy
       redirect_to root_path and return
-    else #if destory fails
+    else #if destroy fails
       redirect_to works_path and return
     end
 
