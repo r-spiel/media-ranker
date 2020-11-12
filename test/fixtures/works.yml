@@ -1,0 +1,15 @@
+book1:
+  category: book
+  title: book1
+  creator: book author
+  publication: 1993
+  description: long description
+album1:
+  category: album
+  title: album1
+  creator: Beyonce
+  publication: 2000
+book2:
+  category: book
+  title: book2
+  creator: another author

@@ -3,7 +3,7 @@ class WorksController < ApplicationController
     @works = Work.all
 
     @albums = @works.where(category: 'album')
-    @sample_albums = @albums.sample(10)
+    # @sample_albums = @albums.sample(10)
 
     @books = @works.where(category: 'book')
     @movies = @works.where(category: 'movie')
