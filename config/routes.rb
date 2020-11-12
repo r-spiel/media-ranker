@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   #custom route for homepage:
   root :to => 'works#homepage'
 
+  resources :users, only: [:index, :show]
+
+  # get '/users/login', to: 'users#login', as: :login_user
+  # post ''
 
 end
