@@ -25,6 +25,13 @@
       </ul>
     </nav>
   </header>
+  <div class="alert">
+    <% flash.each do |name, message| %>
+      <span class="alert-<%= name %>">
+        <%= message %>
+      </span>
+    <% end %>
+  </div>
   <main><%= yield %></main>
   </body>
 </html>

@@ -1,22 +1,22 @@
 <%= form_with model: @work, class: 'edit-work' do |f| %>
 
 
-  <% if @work.errors.any? %>
-    A problem occured, could not update <%= @work.category %>
-    <ul>
-      <% @work.errors.each do |column, message| %>
-        <div class="error-message red">
-          <li>
-            <p><%= column %> <%= message %></p>
-          </li>
-        </div>
-      <% end %>
-    </ul>
-  <% end %>
+  <%# if @work.errors.any? %>
+<!--    A problem occurred, could not update <%#= @work.category %>-->
+<!--    <ul>-->
+      <%# @work.errors.each do |column, message| %>
+<!--        <div class="error-message red">-->
+<!--          <li>-->
+<!--            <p><%#= column %> <%#= message %></p>-->
+<!--          </li>-->
+<!--        </div>-->
+      <%# end %>
+<!--    </ul>-->
+  <%# end %>
 
   <div>
     <%= f.label :Category %>
-    <%= f.select :category, %w[album book movie], include_blank: true %>
+    <%= f.select :category, %w[album book movie], include_blank: false %>
   </div>
 
   <div>

@@ -1,3 +1,16 @@
+<% if @work.errors.any? %>
+  A problem occurred, could not update <%= @work.category %>
+  <ul>
+    <% @work.errors.each do |column, message| %>
+      <div class="error-message red">
+        <li>
+          <p><%= column %> <%= message %></p>
+        </li>
+      </div>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>Add a New Work</h2>
 
 <%= render partial: "form", locals: { action_name: "New"} %>

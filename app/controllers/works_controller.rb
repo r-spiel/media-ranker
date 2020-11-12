@@ -26,6 +26,7 @@ class WorksController < ApplicationController
     @work = Work.new(work_params)
 
     if @work.save #is true
+      flash[:success] = "Successfully created #{@work.category} #{@work.id}"
       redirect_to work_path(@work.id) and return
     else
       render :new, status: :bad_request and return
@@ -55,6 +56,7 @@ class WorksController < ApplicationController
     if @work.nil?
       redirect_to works_path and return
     elsif @work.update(work_params)
+      flash[:success] = "Successfully updated #{@work.category} #{@work.id}"
       redirect_to work_path(@work) and return
     else
       render :edit, status: :bad_request
