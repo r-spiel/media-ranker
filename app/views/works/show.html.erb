@@ -9,7 +9,8 @@
 <section>
   <%= button_to "Back to Media Ranks", root_path, method: :get, :class => "btn btn-primary" %>
   <%= button_to "Edit", edit_work_path(@work), method: :get, :class => "btn btn-primary" %>
-  <%= button_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+  <%= button_to "Upvote", work_votes_path(@work), method: :post, :class => "btn btn-primary" %>
+  <%= button_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-danger" %>
 </section>
 
 <section class="works-votes__container">
@@ -24,10 +25,8 @@
     <% @work.votes.each do |vote| %>
     <tbody>
       <tr>
-        <%= vote.user.username %>
-      </tr>
-      <tr>
-        <%= vote.created_at %>
+        <td><%= link_to vote.user.username, user_path(vote.user.id), method: :get %></td>
+        <td><%= vote.created_at.strftime('%b %d, %Y') %></td>
       </tr>
     </tbody>
     <% end %>

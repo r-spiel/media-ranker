@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def login_form
     @user = User.new
   end
@@ -28,12 +32,12 @@ class UsersController < ApplicationController
   def logout
     if session[:user_id]
       user = User.find_by(id: session[:user_id])
-      unless user.nil?
-        session[:user_id] = nil
-        flash[:success] = 'Successfully logged out'
-      else
+      if user.nil?
         session[:user_id] = nil
         flash[:notice] = 'ERROR unknown user'
+      else
+        session[:user_id] = nil
+        flash[:success] = 'Successfully logged out'
       end
     else
       flash[:error] = 'You must be logged in to log out'
@@ -44,14 +48,17 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def current
-    @current_user = User.find_by(id: session[:user_id])
+  def show
+    @user = User.find_by(id: params[:id])
 
-    unless @current_user
-      flash[:error] = "A problem occurred: You must log in to do that"
-      return
-      #do I need to redirect?  sample site does not when you try to vote w/o being logged in
+    if @user.nil?
+      redirect_to root_path and return
     end
   end
 
+  private
+
+  def user_params
+    return params.require(:user).permit(:username)
+  end
 end
