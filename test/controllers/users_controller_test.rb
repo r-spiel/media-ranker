@@ -16,11 +16,10 @@ describe UsersController do
       }.must_differ 'User.count', 1
 
       must_respond_with :redirect
-      user = User.find_by(username: user_hash[:user][:username])
+      user = User.find_by(username: 'Grace Hopper')
 
       expect(user).wont_be_nil
       expect(session[:user_id]).must_equal user.id
-      expect(user.username).must_equal user_hash[:user][:username]
     end
 
     it 'can login in an existing user' do
@@ -31,6 +30,34 @@ describe UsersController do
       }.wont_change 'User.count'
 
       expect(session[:user_id]).must_equal user.id
+    end
+  end
+
+  describe 'logging out' do
+    it 'can loggout a logged in user' do
+      # Arrange
+      login()
+      expect(session[:user_id]).wont_be_nil
+
+      # Act
+      post logout_path
+
+      expect(session[:user_id]).must_be_nil
+    end
+
+  end
+
+  describe 'current user' do
+    it 'can return the current user page if the user is logged in' do
+      login()
+
+      get current_user_path
+
+      must_respond_with :success
+    end
+
+    it 'can upvote if logged in' do
+      skip
     end
   end
 end

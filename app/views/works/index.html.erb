@@ -1,3 +1,18 @@
+<!--<div class="alert">-->
+  <%# if @works.errors.any? %>
+<!--    <span>A problem occurred, could not update <%#= @works.category %></span>-->
+<!--    <ul>-->
+      <%# @works.errors.each do |column, message| %>
+<!--        <div class="error-message red">-->
+<!--          <li>-->
+<!--            <p><%#= column %> <%#= message %></p>-->
+<!--          </li>-->
+<!--        </div>-->
+      <%# end %>
+<!--    </ul>-->
+  <%# end %>
+<!--</div>-->
+
 <h2>List of Works</h2>
 
 <h4>Albums</h4>
@@ -15,11 +30,11 @@
     <% @albums.each do |album| %>
 
       <tr>
-        <td>!!XX</td>
+        <td><%= album.votes.size %></td>
         <td><%= link_to album.title, work_path(album) %></td>
         <td><%= album.creator %></td>
         <td><%= album.publication %></td>
-        <td>!!!Upvote link</td>
+        <td><%= button_to "Upvote", work_votes_path(album.id), method: :post %></td>
       </tr>
     <% end %>
   </table>

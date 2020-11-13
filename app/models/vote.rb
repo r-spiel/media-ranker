@@ -1,5 +1,6 @@
 class Vote < ApplicationRecord
-  #validate that user & work are unique
+  validates :user, uniqueness: {scope: :work}
+  #do I also have to validate the reverse?
 
   belongs_to :user
   belongs_to :work
