@@ -1,15 +1,19 @@
-<% if @work.errors.any? %>
-  A problem occurred, could not update <%= @work.category %>
-  <ul>
-    <% @work.errors.each do |column, message| %>
-      <div class="error-message red">
-        <li>
-          <p><%= column %> <%= message %></p>
-        </li>
-      </div>
-    <% end %>
-  </ul>
-<% end %>
+<section class="alert__container">
+  <% if @work.errors.any? %>
+    <div class="alert alert-warning">
+      A problem occurred, could not update <%= @work.category %>
+      <ul>
+        <% @work.errors.each do |column, message| %>
+          <div class="error-message red">
+            <li>
+              <p><%= column %> <%= message %></p>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+</section>
 
 <h2>Add a New Work</h2>
 

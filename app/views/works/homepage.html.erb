@@ -1,5 +1,5 @@
 <section class="spotlight">
-  <h2><span>Media Spotlight</span>
+  <h2 class="spotlight__header"><span class="spotlight__header--prefix">Media Spotlight</span>
     <% first_work = @works.first %>
     <%= link_to first_work.title, work_path(first_work.id), method: :get %>
     by <%= first_work.creator %>
@@ -9,48 +9,9 @@
 
 
 <section class="top-ten__container">
-  <section class="top-ten__list-container">
-    <h2>Top Movies</h2>
-    <ul>
-      <% unless @movies.nil? %>
-        <% @movies.sample(10).each do |movie| %>
-          <li>
-            <%= link_to movie.title, work_path(movie.id), method: :get %> by <%= movie.creator %>
-            <p>XX votes</p>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  </section>
-
-
-  <section>
-    <h2>Top Books</h2>
-    <ul>
-      <% unless @books.nil? %>
-        <% @books.sample(10).each do |book| %>
-          <li>
-            <%= link_to book.title, work_path(book.id), method: :get %> by <%= book.creator %>
-            <p>XX votes</p>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Top Albums</h2>
-    <ul>
-      <% unless @albums.nil? %>
-        <% @albums.sample(10).each do |album| %>
-          <li>
-            <%= link_to album.title, work_path(album.id), method: :get %> by <%= album.creator %>
-            <p>XX votes</p>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  </section>
+  <%= render partial: "top_ten", locals: { category: "Movies", works: @movies } %>
+  <%= render partial: "top_ten", locals: { category: "Books", works: @books } %>
+  <%= render partial: "top_ten", locals: { category: "Movies", works: @albums } %>
 </section>
 
 

@@ -7,7 +7,29 @@
 <p><%= @work.description %></p>
 
 <section>
-  <%= button_to "Back to Media Ranks", root_path, method: :get %>
-  <%= button_to "Edit", edit_work_path(@work), method: :get %>
-  <%= button_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?" }  %>
+  <%= button_to "Back to Media Ranks", root_path, method: :get, :class => "btn btn-primary" %>
+  <%= button_to "Edit", edit_work_path(@work), method: :get, :class => "btn btn-primary" %>
+  <%= button_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+</section>
+
+<section class="works-votes__container">
+  <h3 class="works-votes__header"><%= @work.votes.size %> Votes for this <%= @work.category %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <% @work.votes.each do |vote| %>
+    <tbody>
+      <tr>
+        <%= vote.user.username %>
+      </tr>
+      <tr>
+        <%= vote.created_at %>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 </section>
