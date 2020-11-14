@@ -6,7 +6,6 @@ class WorksController < ApplicationController
     @albums_top_ten = Work.top_ten('album')
     @books_top_ten = Work.top_ten('book')
     @movies_top_ten = Work.top_ten('movie')
-
   end
 
   def index
@@ -15,7 +14,6 @@ class WorksController < ApplicationController
     @albums = Work.where(category: 'album')
     @books = Work.where(category: 'book')
     @movies = Work.where(category: 'movie')
-
   end
 
   def new

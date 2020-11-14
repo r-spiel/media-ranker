@@ -5,6 +5,8 @@ class Work < ApplicationRecord
   has_many :votes
 
   def self.top_work
+    return nil if Work.nil?
+
     top_work = Work.all.max_by { |work| work.votes.count }
     return top_work
   end
