@@ -4,5 +4,10 @@ class Work < ApplicationRecord
 
   has_many :votes
 
+  def top_ten
+
+
+
+  end
 
 end

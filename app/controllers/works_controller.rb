@@ -10,11 +10,11 @@ class WorksController < ApplicationController
   end
 
   def index
-    @works = Work.all
+    @votes = Vote.all #try to get error message same as sample site
 
-    @albums = @works.where(category: 'album')
-    @books = @works.where(category: 'book')
-    @movies = @works.where(category: 'movie')
+    @albums = Work.where(category: 'album')
+    @books = Work.where(category: 'book')
+    @movies = Work.where(category: 'movie')
 
   end
 
