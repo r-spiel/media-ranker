@@ -1,17 +1,17 @@
 <section class="spotlight">
   <h2 class="spotlight__header"><span class="spotlight__header--prefix">Media Spotlight</span>
-    <% first_work = @works.first %>
-    <%= link_to first_work.title, work_path(first_work.id), method: :get %>
-    by <%= first_work.creator %>
+    <% @top_work %>
+    <%= link_to @top_work.title, work_path(@top_work), method: :get %>
+    by <%= @top_work.creator %>
   </h2>
-  <p>How many votes this has</p>
+  <p><%= @top_work.votes.count %> votes - </p>
 </section>
 
 
 <section class="top-ten__container">
-  <%= render partial: "top_ten", locals: { category: "Movies", works: @movies } %>
-  <%= render partial: "top_ten", locals: { category: "Books", works: @books } %>
-  <%= render partial: "top_ten", locals: { category: "Movies", works: @albums } %>
+  <%= render partial: "top_ten", locals: { category: "Movies", works: @movies_top_ten } %>
+  <%= render partial: "top_ten", locals: { category: "Books", works: @books_top_ten } %>
+  <%= render partial: "top_ten", locals: { category: "Movies", works: @albums_top_ten } %>
 </section>
 
 

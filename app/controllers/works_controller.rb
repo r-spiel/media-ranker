@@ -1,12 +1,12 @@
 class WorksController < ApplicationController
   def homepage
-    @works = Work.all
+    # @works = Work.all
+    @top_work = Work.top_work
 
-    @albums = @works.where(category: 'album')
-    # @sample_albums = @albums.sample(10)
+    @albums_top_ten = Work.top_ten('album')
+    @books_top_ten = Work.top_ten('book')
+    @movies_top_ten = Work.top_ten('movie')
 
-    @books = @works.where(category: 'book')
-    @movies = @works.where(category: 'movie')
   end
 
   def index
