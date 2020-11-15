@@ -76,7 +76,6 @@ describe UsersController do
       expect{
         post work_votes_path(work)
       }.wont_change "Vote.count"
-
     end
   end
 end

@@ -6,7 +6,7 @@ describe User do
       #use fixtures yml data
       user = users(:user0)
 
-      expect(user.votes.size).must_equal 4
+      expect(user.votes.count).must_equal 4
     end
 
     it 'can access works through votes' do
@@ -14,13 +14,12 @@ describe User do
 
       expect(user.works.count).must_equal 4
     end
-
   end
 
   describe 'validations' do
     before do
       # Arrange a valid user
-      @user = User.new(username: 'Username')
+      @user = User.create!(username: 'Username')
     end
 
     it 'is valid when all fields are present' do
@@ -36,6 +35,13 @@ describe User do
       result = @user.valid?
 
       expect(result).must_equal false
+    end
+
+    it 'is invalid if username already exists' do
+      new_user = User.new(username: 'Username')
+
+      expect(new_user.valid?).must_equal false
+      # if do new_user.save, then expect validation error?
     end
   end
 

@@ -1,6 +1,6 @@
 class Work < ApplicationRecord
   validates :category, presence: true
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: {scope: :category}
 
   has_many :votes
   has_many :users, through: :votes
@@ -11,7 +11,6 @@ class Work < ApplicationRecord
     top_work = Work.all.max_by { |work| work.votes.count }
     return top_work
   end
-
 
   def self.top_ten(media)
     # sort_by sorts smallest to largest
