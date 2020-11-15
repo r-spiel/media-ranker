@@ -89,9 +89,30 @@ describe Work do
 
       expect(spotlight.id).must_equal most_votes.id
     end
+
+    it 'return nil if no works' do
+      Work.all.each do |work|
+        work.destroy
+      end
+
+      featured_work = Work.top_work
+
+      expect(featured_work).must_be_nil
+    end
   end
 
-  describe 'top ten method' do
+  describe 'top_ten method' do
+    it 'gets top ten for more than 10 items' do
+      skip
+    end
+
+    it 'gets top ten for less than 10 items' do
+      skip
+    end
+
+    it 'returns nil for no top ten of empty category' do
+      skip
+    end
 
   end
 
