@@ -48,16 +48,35 @@ describe UsersController do
   end
 
   describe 'current user' do
-    it 'can return the current user page if the user is logged in' do
-      login()
-
-      get current_user_path
-
-      must_respond_with :success
-    end
+    # deleted current user path because looks the same as show page
+    # it 'can return the current user page if the user is logged in' do
+    # login()
+    #
+    #   get current_user_path
+    #
+    #   must_respond_with :success
+    # end
 
     it 'can upvote if logged in' do
-      skip
+      login()
+      work = works(:book1)
+
+      # Act / Expect
+      expect{
+        post work_votes_path(work)
+      }.must_differ "Vote.count", 1
+
+    end
+
+    it 'cannot upvote if not logged in' do
+      work = works(:book1)
+
+      # Act / Expect
+
+      expect{
+        post work_votes_path(work)
+      }.wont_change "Vote.count"
+
     end
   end
 end

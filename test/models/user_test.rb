@@ -4,9 +4,15 @@ describe User do
   describe 'relations' do
     it 'can have many votes' do
       #use fixtures yml data
-      user = users(:user1)
+      user = users(:user0)
 
-      expect(user.votes.size).must_equal 2
+      expect(user.votes.size).must_equal 4
+    end
+
+    it 'can access works through votes' do
+      user = users(:user0)
+
+      expect(user.works.count).must_equal 4
     end
 
   end

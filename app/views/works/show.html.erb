@@ -6,7 +6,7 @@
 
 <p><%= @work.description %></p>
 
-<section>
+<section class="btn-group">
   <%= button_to "Back to Media Ranks", root_path, method: :get, :class => "btn btn-primary" %>
   <%= button_to "Edit", edit_work_path(@work), method: :get, :class => "btn btn-primary" %>
   <%= button_to "Upvote", work_votes_path(@work), method: :post, :class => "btn btn-primary" %>

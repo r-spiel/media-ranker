@@ -13,6 +13,19 @@ describe Work do
         expect(work.votes.size).must_equal 1
       end
 
+      it 'has many votes' do
+        #use fixtures yml data
+        work = works(:album4)
+
+        expect(work.votes.count).must_equal 6
+      end
+
+      it 'can access users through votes' do
+        work = works(:album4)
+
+        expect(work.users.count).must_equal 6
+
+      end
     end
   end
 
@@ -64,6 +77,22 @@ describe Work do
       expect(result).must_equal false
       expect(@work.errors.messages).must_include :title
     end
+  end
+
+  describe 'top_work_method' do
+    it 'returns the top work' do
+      # Arrange / Act
+      # trying to use the fixtures
+      spotlight = Work.top_work
+      most_votes = works(:album4)
+
+
+      expect(spotlight.id).must_equal most_votes.id
+    end
+  end
+
+  describe 'top ten method' do
+
   end
 
 end

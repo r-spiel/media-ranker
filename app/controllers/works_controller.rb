@@ -31,29 +31,12 @@ class WorksController < ApplicationController
     end
   end
 
-  def show
-    id = params[:id]
-    @work = Work.find_by(id: id)
+  def show; end
 
-    if @work.nil?
-      redirect_to works_path and return
-    end
-  end
-
-  def edit
-    @work = Work.find_by(id: params[:id])
-
-    if @work.nil?
-      redirect_to works_path and return
-    end
-  end
+  def edit; end
 
   def update
-    @work = Work.find_by(id: params[:id])
-
-    if @work.nil?
-      redirect_to works_path and return
-    elsif @work.update(work_params)
+    if @work.update(work_params)
       flash[:success] = "Successfully updated #{@work.category} #{@work.id}"
       redirect_to work_path(@work) and return
     else
@@ -62,18 +45,26 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    @work = Work.find_by(id: params[:id])
-
     if @work
       @work.destroy
       redirect_to root_path and return
     else #if destroy fails
       redirect_to works_path and return
     end
-
   end
 
   private
+
+  def get_work
+    id = params[:id]
+    @work = Work.find_by(id: id)
+
+    if @work.nil?
+      redirect_to works_path and return
+    end
+  end
+
+
   def work_params
     return params.require(:work).permit(:category, :title, :creator, :publication, :description)
   end
