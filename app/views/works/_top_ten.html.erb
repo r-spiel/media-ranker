@@ -5,7 +5,6 @@
       <h4>
         <%= link_to work.title, work_path(work.id), method: :get %>
         <small class="top_ten__creator"> by <%= work.creator %></small>
-        <!--    TODO this is id for now!-->
       </h4>
       <p><%= work.votes.size %> votes</p>
     </li>
