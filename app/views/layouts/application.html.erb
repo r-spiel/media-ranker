@@ -45,8 +45,10 @@
         <span><%= flash[:error].first %></span>
         <% if flash[:error].count > 1 %>
           <ul>
-            <% flash[:error].last.each do |message| %>
-              <li><%= message %></li>
+            <% flash[:error].last.each do |attribute, messages| %>
+              <% messages.each do |message| %>
+                <li><%= "#{attribute}: #{message} " %></li>
+              <% end %>
             <% end %>
           </ul>
         <% end %>

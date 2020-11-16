@@ -24,16 +24,23 @@ class UsersController < ApplicationController
       user = User.new(username: params[:user][:username])
       if user.save
         flash[:success] = "Successfully created new user #{user.username} with ID: #{user.id}"
+        session[:user_id] = user.id
+        redirect_to root_path
       else
-        render :new, status: :bad_request and return
+        flash[:error] = ["A problem occurred: Could not log in"]
+        flash[:error] << user.errors
+        redirect_back fallback_location: '/'
+
+        # render login_form, status: :bad_request and return
       end
     else
       # existing user
       flash[:success] = "Successfully logged in as existing user #{user.username}"
+      session[:user_id] = user.id
+      redirect_to root_path
     end
 
-    session[:user_id] = user.id
-    redirect_to root_path
+
   end
 
   def logout
@@ -47,7 +54,7 @@ class UsersController < ApplicationController
         flash[:success] = 'Successfully logged out'
       end
     else
-      flash[:error] = 'You must be logged in to log out'
+      flash[:error] = ['You must be logged in to log out']
       redirect_to root_path
       return
     end
