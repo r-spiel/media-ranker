@@ -14,6 +14,7 @@ class Work < ApplicationRecord
 
   def self.top_ten(media)
     # sort_by sorts smallest to largest
+    # but this actually returns an empty array when a category is empty
     return nil if self.nil?
 
     works = Work.where(category: media)

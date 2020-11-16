@@ -11,7 +11,7 @@ class VotesController < ApplicationController
     work = Work.find_by(id: params[:work_id])
     unless work
       flash[:error] = "A problem occurred with voting on this work."
-      redirect_back fallback_location: '/'
+      redirect_to root_path
       return
     end
 
