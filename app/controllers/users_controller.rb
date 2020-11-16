@@ -4,6 +4,14 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+
+    if @user.nil?
+      redirect_to root_path and return
+    end
+  end
+
   def login_form
     @user = User.new
   end
@@ -18,7 +26,6 @@ class UsersController < ApplicationController
         flash[:success] = "Successfully created new user #{user.username} with ID: #{user.id}"
       else
         render :new, status: :bad_request and return
-        #should this have an else statement for if the save fails?  Validation fails?
       end
     else
       # existing user
@@ -46,14 +53,6 @@ class UsersController < ApplicationController
     end
 
     redirect_to root_path
-  end
-
-  def show
-    @user = User.find_by(id: params[:id])
-
-    if @user.nil?
-      redirect_to root_path and return
-    end
   end
 
   private

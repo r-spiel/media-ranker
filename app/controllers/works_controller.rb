@@ -1,6 +1,7 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update]
+
   def homepage
-    # @works = Work.all
     @top_work = Work.top_work
 
     @albums_top_ten = Work.top_ten('album')
@@ -55,7 +56,7 @@ class WorksController < ApplicationController
 
   private
 
-  def get_work
+  def find_work
     id = params[:id]
     @work = Work.find_by(id: id)
 

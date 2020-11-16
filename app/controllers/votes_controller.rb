@@ -21,7 +21,7 @@ class VotesController < ApplicationController
       flash[:success] = 'Successfully upvoted!'
       redirect_back fallback_location: '/'
     else
-      flash[:error] = 'An error occurred, vote is not saved.'
+      flash[:error] = @vote.errors.messages[:user_id][0]
       redirect_back fallback_location: '/'
       return
     end
