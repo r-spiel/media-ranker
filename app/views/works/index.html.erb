@@ -1,23 +1,8 @@
-<!--<div class="alert">-->
-  <%# if @votes.errors.any? %>
-<!--    <span>A problem occurred:</span>-->
-<!--    <ul>-->
-      <%# @votes.errors.each do |column, message| %>
-<!--        <div class="error-message red">-->
-<!--          <li>-->
-<!--            <p><%#= column %> <%#= message %></p>-->
-<!--          </li>-->
-<!--        </div>-->
-      <%# end %>
-<!--    </ul>-->
-  <%# end %>
-<!--</div>-->
-
 <h2>List of Works</h2>
 
 <%= render partial: "table", locals: { category: "Albums", works: @albums } %>
 <%= render partial: "table", locals: { category: "Books", works: @books } %>
 <%= render partial: "table", locals: { category: "Movies", works: @movies } %>
 
-<%= button_to "View top media", root_path, :class => "btn btn-secondary" %>
+<%= button_to "View top media", root_path, method: :get, :class => "btn btn-secondary" %>
 <%= button_to "Add a new work", new_work_path, method: :get, :class => "btn btn-primary" %>
