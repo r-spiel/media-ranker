@@ -18,10 +18,11 @@ class VotesController < ApplicationController
     @vote = Vote.new(user_id: user.id, work_id: work.id)
 
     if @vote.save
-      flash[:success] = 'Successfully upvoted!'
+      flash[:success] = "Successfully upvoted!"
       redirect_back fallback_location: '/'
     else
-      flash[:error] = @vote.errors.messages[:user_id][0]
+      flash[:error] = "A problem occurred: Could not upvote"
+      # flash[:error] << @vote.errors
       redirect_back fallback_location: '/'
       return
     end

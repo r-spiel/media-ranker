@@ -33,13 +33,25 @@
       </ul>
     </nav>
   </header>
-  <div class="alert">
-    <% flash.each do |name, message| %>
-      <span class="alert-<%= name %>">
-        <%= message %>
-      </span>
+  <section class="alert__container">
+    <% if flash[:success] %>
+      <div class="alert alert-success"><span><%= flash[:success] %></span></div>
+
+    <% elsif flash[:error] %>
+      <div class="alert alert-warning">
+        <span><%= flash[:error].first %></span>
+        <% if flash[:error].count > 1 %>
+        <ul>
+          <% flash[:error].last.each do |message| %>
+            <li><%= message %></li>
+<!--            <li><%#= "#{message[0]}: #{message[1][0]}" %></li>-->
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+
     <% end %>
-  </div>
+  </section>
   <main><%= yield %></main>
   </body>
 </html>
